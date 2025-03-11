@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mugallym Paneli</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Mugallym Paneli</h1>
+        <p class="info-text">Täze test dörediň ýa-da bar bolan testleriňizi düzetmek üçin saýlaň.</p>
+        <a href="{% url 'create_test' %}" class="btn btn-primary">Täze Test Döret</a>
+        <div class="panel">
+            <h2>Testleriňiz</h2>
+            <ul>
+                {% for test in tests %}
+                    <li>
+                        <a href="{% url 'test_detail' test_code=test.test_code %}">{{ test.test_code }}</a>
+                        (Wagt: {{ test.time_limit }} min)
+                    </li>
+                {% empty %}
+                    <li>Entäk test ýok.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{% url 'index' %}" class="btn btn-primary">Yzyna</a>
+    </div>
+</body>
+</html>

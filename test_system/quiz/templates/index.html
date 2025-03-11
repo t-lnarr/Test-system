@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Ulgamy</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Test Ulgamyna Hoş Geldiňiz</h1>
+        <p class="info-text">Test ulgamy okuwçylar we mugallymlar üçin ýörite döredildi. Özüňize degişli bölüme giriň.</p>
+        <div style="text-align: center;">
+            <a href="{% url 'student_login' %}" class="btn btn-primary">Okuwçy hökmünde Gir</a>
+            <a href="{% url 'teacher_login' %}" class="btn btn-success">Mugallym hökmünde Gir</a>
+            {% if user.is_superuser %}
+                <a href="{% url 'dashboard' %}" class="btn btn-primary">Admin Sekmesi</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

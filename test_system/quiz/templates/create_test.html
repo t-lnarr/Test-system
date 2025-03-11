@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Täze Test Döret</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Täze Test Döret</h1>
+        <p class="info-text">Test kody we sorag sany giriň, soňra soraglary düzetmek üçin dowam ediň.</p>
+        {% if error %}
+            <p class="text-danger">{{ error }}</p>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label>Test Kody:</label>
+                <input type="text" name="test_code" class="form-control" placeholder="Meselem: Bilim2025" required>
+            </div>
+            <div>
+                <label>Wagt (minut):</label>
+                <input type="number" name="time_limit" class="form-control" placeholder="Meselem: 30" required>
+            </div>
+            <div>
+                <label>Sorag Sany:</label>
+                <input type="number" name="question_count" class="form-control" min="1" placeholder="Meselem: 5" required>
+            </div>
+            <button type="submit" class="btn btn-success">Soraglary Gir</button>
+        </form>
+        <a href="{% url 'teacher_dashboard' %}" class="btn btn-primary">Yzyna</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Gözle</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Test Gözle</h1>
+        <p class="info-text">Mugallymyňyz tarapyndan berlen test koduny giriň.</p>
+        {% if error %}
+            <p class="text-danger">{{ error }}</p>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label>Test Kody:</label>
+                <input type="text" name="test_code" class="form-control" placeholder="Meselem: Bilim2025" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Gözle</button>
+        </form>
+        <a href="{% url 'index' %}" class="btn btn-primary" style="margin-top: 10px;">Yzyna</a>
+    </div>
+</body>
+</html>

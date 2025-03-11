@@ -1,0 +1,173 @@
+/* Genel Stil */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Başlıklar */
+h1 {
+    color: #5173BE;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #3b5998;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #5173BE;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+/* Açıklama Metinleri */
+.info-text {
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Form Elemanları */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #5173BE;
+    outline: none;
+}
+
+.form-check {
+    margin: 10px 0;
+}
+
+/* Butonlar */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: #5173BE;
+}
+
+.btn-primary:hover {
+    background-color: #3b5998;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Hata Mesajları */
+.text-danger {
+    color: #dc3545;
+    text-align: center;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+/* Test Soruları */
+.question-box {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Liste Elemanları */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 10px;
+    background-color: #eef1f5;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Timer */
+#timer {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #dc3545;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Panel */
+.panel {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+    #timer {
+        top: 5px;
+        right: 5px;
+        font-size: 12px;
+    }
+}

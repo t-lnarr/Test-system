@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Sekmesi</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Sekmesi</h1>
+        <p class="info-text">Ulgamdaky ähli maglumatlary bu ýerden görüp we dolandyryp bilersiňiz.</p>
+
+        <div class="panel">
+            <h2>Täze Mugallym Goş</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div>
+                    <label>Ulanyjy Ady:</label>
+                    <input type="text" name="username" class="form-control" placeholder="Meselem: mugallym2" required>
+                </div>
+                <div>
+                    <label>Parol:</label>
+                    <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-success">Goş</button>
+            </form>
+        </div>
+
+        <div class="panel">
+            <h2>Mugallymlar ({{ teachers|length }})</h2>
+            <ul>
+                {% for teacher in teachers %}
+                    <li>{{ teacher.username }} </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <div class="panel">
+            <h2>Okuwçylar ({{ students|length }})</h2>
+            <ul>
+                {% for student in students %}
+                    <li>{{ student.student_name }} ({{ student.class_name }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="panel">
+            <h2>Testler ({{ tests|length }})</h2>
+            <ul>
+                {% for test in tests %}
+                    <li>{{ test.test_code }} ({{ test.time_limit }} min) - Oluşturan: {{ test.teacher.username }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="panel">
+            <h2>Netijeler ({{ results|length }})</h2>
+            <ul>
+                {% for result in results %}
+                    <li>{{ result.student_name }} ({{ result.class_name }}) - {{ result.test.test_code }}: {{ result.score }} bal, {{ result.duration_minutes|floatformat:2|default:'Bilinmeýär' }} min</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="panel">
+            <h2>Synp Analizi</h2>
+            <ul>
+                {% for class_name, stats in class_stats.items %}
+                    <li>{{ class_name }}: {{ stats.total }} okuwçy, Orta bal: {{ stats.average_score|floatformat:2 }}, Orta süre: {{ stats.average_duration|floatformat:2|default:'Bilinmeýär' }} min</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <a href="{% url 'index' %}" class="btn btn-primary">Yzyna</a>
+    </div>
+</body>
+</html>

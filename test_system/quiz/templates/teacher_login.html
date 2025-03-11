@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mugallym Girişi</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Mugallym Girişi</h1>
+        <p class="info-text">Testleri ýöretmek üçin giriş maglumatlaryňyzy giriň.</p>
+        {% if error %}
+            <p class="text-danger">{{ error }}</p>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label>Ulanyjy Ady:</label>
+                <input type="text" name="username" class="form-control" placeholder="Meselem: mugallym1" required>
+            </div>
+            <div>
+                <label>Parol:</label>
+                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn btn-success">Girmek</button>
+        </form>
+    </div>
+</body>
+</html>

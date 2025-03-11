@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Okuwçy Girişi</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Okuwçy Girişi</h1>
+        <p class="info-text">Doly adyňyzy we synpyňyzy giriň, testleri çözmäge başlaň.</p>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label>Adyňyz:</label>
+                <input type="text" name="name" class="form-control" placeholder="Meselem: Mekan" required>
+            </div>
+            <div>
+                <label>Synpyňyz:</label>
+                <select name="class" class="form-control" required>
+                    <option value="" disabled selected>Synp saýlaň</option>
+                    <option value="9A">9A</option>
+                    <option value="9B">9B</option>
+                    <option value="10A">10A</option>
+                    <option value="10B">10B</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Girmek</button>
+        </form>
+    </div>
+</body>
+</html>

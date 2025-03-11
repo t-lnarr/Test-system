@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Netijeler</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Test Netijeňiz</h1>
+        <p class="info-text">Aşakda netijeleriňizi we ýalňyşlaryňyzy görüp bilersiňiz.</p>
+        <div class="panel">
+            <h2>Umumy Netije</h2>
+            <p><strong>Bal: {{ score }} / {{ total }}</strong></p>
+            <p>Yüzde: {{ percentage|floatformat:2 }}%</p>
+        </div>
+        <div class="panel">
+            <h2>Dogry Jogaplar</h2>
+            <ul>
+                {% for item in correct_answers %}
+                    <li>{{ item.text }} - Jogabyňyz: <strong>{{ item.answer }}</strong></li>
+                {% empty %}
+                    <li>Dogry jogap ýok.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="panel">
+            <h2>Ýalňyş Jogaplar</h2>
+            <ul>
+                {% for item in incorrect_answers %}
+                    <li>{{ item.text }} - Jogabyňyz: {{ item.user_answer }}, Dogry: <strong>{{ item.correct_answer }}</strong></li>
+                {% empty %}
+                    <li>Ýalňyş jogap ýok.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{% url 'student_dashboard' %}" class="btn btn-primary">Yzyna</a>
+    </div>
+</body>
+</html>

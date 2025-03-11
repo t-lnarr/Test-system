@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ test.test_code }} Detaylary</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ test.test_code }} Detaylary</h1>
+        <p class="info-text">Testi düzetmek ýa-da netijeleri görmek üçin aşak geçiriň.</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="panel">
+                <h2>Test Maglumatlary</h2>
+                <div>
+                    <label>Test Kody (ady):</label>
+                    <input type="text" name="test_code" value="{{ test.test_code }}" class="form-control" required>
+                </div>
+                <div>
+                    <label>Wagt (minut):</label>
+                    <input type="number" name="time_limit" value="{{ test.time_limit }}" class="form-control" required>
+                </div>
+            </div>
+            {% for question in questions %}
+                <div class="question-box">
+                    <h3>Sorag {{ forloop.counter }}</h3>
+                    <div>
+                        <label>Sorag Teksti:</label>
+                        <input type="text" name="question_text_{{ question.id }}" value="{{ question.text }}" class="form-control" required>
+                    </div>
+                    {% for key, value in question.options.items %}
+                        <div>
+                            <label>{{ key }} Jg:</label>
+                            <input type="text" name="opt_{{ key|lower }}_{{ question.id }}" value="{{ value }}" class="form-control" required>
+                        </div>
+                    {% endfor %}
+                    <div>
+                        <label>Dogry Jogap:</label>
+                        <input type="text" name="correct_answer_{{ question.id }}" value="{{ question.correct_answer }}" class="form-control" required>
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Düzetmeleri Ýatda Sakla</button>
+        </form>
+        <div class="panel">
+            <h2>Netijeler</h2>
+            <ul>
+                {% for result in results %}
+                    <li>{{ result.student_name }} ({{ result.class_name }}) | Bal: {{ result.score }} | Süre: {{ result.duration_minutes|floatformat:2|default:'Bilinmeýär' }} min</li>
+                {% empty %}
+                    <li>Entäk netije ýok.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="panel">
+            <h2>Synp Analizi</h2>
+            <ul>
+                {% for class_name, stats in class_stats.items %}
+                    <li>{{ class_name }}: {{ stats.total }} okuwçy | Orta bal: {{ stats.average|floatformat:2 }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{% url 'teacher_dashboard' %}" class="btn btn-primary">Yzyna</a>
+    </div>
+</body>
+</html>

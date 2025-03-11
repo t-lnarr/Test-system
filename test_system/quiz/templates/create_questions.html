@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Soraglary Gir</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Soraglary Gir</h1>
+        <p class="info-text">Her sorag üçin tekst we jiklary giriň. Dogry jogaby A-D arasynda saýlaň.</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="questions" value="true">
+            {% for i in "x"|ljust:question_count %}
+                <div class="question-box">
+                    <h3>Sorag {{ forloop.counter }}</h3>
+                    <div>
+                        <label>Sorag Teksti:</label>
+                        <input type="text" name="question_text_{{ forloop.counter0 }}" class="form-control" placeholder="Meselem: 2+2 näçe?" required>
+                    </div>
+                    <div>
+                        <label>A Jik:</label>
+                        <input type="text" name="opt_a_{{ forloop.counter0 }}" class="form-control" placeholder="Meselem: 3" required>
+                    </div>
+                    <div>
+                        <label>B Jik:</label>
+                        <input type="text" name="opt_b_{{ forloop.counter0 }}" class="form-control" placeholder="Meselem: 4" required>
+                    </div>
+                    <div>
+                        <label>C Jik:</label>
+                        <input type="text" name="opt_c_{{ forloop.counter0 }}" class="form-control" placeholder="Meselem: 5" required>
+                    </div>
+                    <div>
+                        <label>D Jik:</label>
+                        <input type="text" name="opt_d_{{ forloop.counter0 }}" class="form-control" placeholder="Meselem: 6" required>
+                    </div>
+                    <div>
+                        <label>Dogry Jogap:</label>
+                        <input type="text" name="correct_answer_{{ forloop.counter0 }}" class="form-control" placeholder="Meselem: B" required>
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Testi Ýatda Sakla</button>
+        </form>
+        <a href="{% url 'teacher_dashboard' %}" class="btn btn-primary">Yzyna</a>
+    </div>
+</body>
+</html>

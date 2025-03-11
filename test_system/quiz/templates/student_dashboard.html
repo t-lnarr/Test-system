@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Okuwçy Paneli</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Okuwçy Paneli</h1>
+        <p class="info-text">Bar bolan testlerden birini saýlap çöziň.</p>
+        <div class="panel">
+            <h2>Testler</h2>
+            <form method="post">
+                {% csrf_token %}
+                <ul>
+                    {% for test in tests %}
+                        <li>
+                            {{ test.test_code }} ({{ test.time_limit }} min)
+                            <button type="submit" name="test_code" value="{{ test.test_code }}" class="btn btn-primary" style="float: right;">Çöz</button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </form>
+        </div>
+        <a href="{% url 'index' %}" class="btn btn-primary">Yzyna</a>
+    </div>
+</body>
+</html>
